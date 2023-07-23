@@ -6,6 +6,8 @@ import (
 	"gomailinglist/mdb"
 	"log"
 	"sync"
+	"mailinglist/grpcapi"
+	"mailinglist/jsonapi"
 
 	"github.com/alexflint/go-arg"
 )
@@ -24,6 +26,10 @@ func main(){
 	}
 	if args.BindJson == "" {
 		args.BindJson = ":8080"
+
+	}
+	if args.BindGrpc == "" {
+		args.BindJson = ":8081"
 
 	}
 
