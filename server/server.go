@@ -6,8 +6,8 @@ import (
 	"gomailinglist/mdb"
 	"log"
 	"sync"
-	"mailinglist/grpcapi"
-	"mailinglist/jsonapi"
+	"gomailinglist/grpcapi"
+
 
 	"github.com/alexflint/go-arg"
 )

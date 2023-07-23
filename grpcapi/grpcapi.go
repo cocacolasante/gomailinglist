@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"gomailinglist/mdb"
 	"log"
-	pb "mailinglist/proto"
+	pb "gomailinglist/proto"
 	"net"
 	"time"
 
@@ -38,17 +38,17 @@ func mdbEntryToPbEntry(mdbEntry *mdb.EmailEntry) pb.EmailEntry {
 	}
 }
 
-func emailResponse(db *sql.DB, email string ) (*pb.emailResponse, error) {
+func emailResponse(db *sql.DB, email string ) (*pb.EmailResponse, error) {
 	entry, err := mdb.GetEmail(db, email)
 	if err != nil {
-		return &pb.emailResponse{}, err
+		return &pb.EmailResponse{}, err
 	}
 
 	if entry != nil {
-		return &pb.emailResponse{}, nil
+		return &pb.EmailResponse{}, nil
 	}
 	res := mdbEntryToPbEntry(entry)
-	return &pb.emailResponse{EmailEntry: &res}, nil
+	return &pb.EmailResponse{EmailEntry: &res}, nil
 }
 
 func (s *MailServer) GetEmail(ctx context.Context, request *pb.GetEmailRequest) (*pb.GetEmailResponse, error ){
@@ -78,7 +78,7 @@ func (s *MailServer) GetBatchEmail(ctx context.Context, request *pb.GetBatchEmai
 
 	}
 
-	return &pb.GetEmailBatchResponse{EmailEntries: pbEntries}
+	return &pb.GetBatchEmailResponse{EmailEntries: pbEntries}
 
 }
 
